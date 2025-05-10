@@ -1,0 +1,10 @@
+# Editor files
+.vscode/
+
+# Output of the go coverage tool
+coverage/*
+*.out
+
+# Env files
+*.env
+!.env.example
