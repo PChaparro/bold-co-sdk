@@ -22,7 +22,7 @@ Programmatically generate payment links for e-commerce and SaaS platforms, enabl
 
 - [x] Retrieve available payment methods ✅
 - [x] Create payment link ✅
-- [ ] Retrieve payment link ❌
+- [x] Retrieve payment link ✅
 
 ### Integrations API 🔌
 
@@ -48,6 +48,7 @@ Refer to the integration tests to learn how to use the SDK. The available tests 
 | ------------------- | ------------------------------------------------------------------ |
 | Get payment methods | [get_payment_methods_test.go](src/sdk/get_payment_methods_test.go) |
 | Create payment link | [create_payment_link_test.go](src/sdk/create_payment_link_test.go) |
+| Get payment link    | [get_payment_link_test.go](src/sdk/get_payment_link_data_test.go)       |
 
 Below is an example of generating a payment link:
 
