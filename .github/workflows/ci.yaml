@@ -5,6 +5,11 @@ on:
     branches: 
       - main
       - development
+    paths: 
+    # Run only on changes to the src directory
+    - "src/**"
+    # Run only on changes to the .github/workflows directory (this file)
+    - ".github/workflows/ci.yaml"
 
 jobs:
   integration: 
