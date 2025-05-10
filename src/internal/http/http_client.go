@@ -1,4 +1,3 @@
-// filepath: /home/pacq/Documents/Github/Personal/bold-co-sdk/src/internal/http/http_client.go
 // Package http provides a singleton HTTP client for making API requests
 // to external services. It simplifies making HTTP requests by providing
 // methods for the most common HTTP operations (GET, POST).
@@ -16,37 +15,37 @@ import (
 	"time"
 )
 
-// RequestOptions contains the options for an HTTP request
+// RequestOptions contains the options for an HTTP request.
 type RequestOptions struct {
-	// URL to send the request to
+	// URL to send the request to.
 	URL string
 
-	// Headers to include in the request
+	// Headers to include in the request.
 	Headers map[string]string
 
-	// Body to send with the request (for POST)
+	// Body to send with the request (for POST).
 	Body interface{}
 
-	// QueryParams to include in the URL
+	// QueryParams to include in the URL.
 	QueryParams map[string]string
 
-	// Timeout for this specific request
+	// Timeout for this specific request.
 	Timeout time.Duration
 }
 
-// HTTPResponse represents the response from an HTTP request
+// HTTPResponse represents the response from an HTTP .
 type HTTPResponse struct {
-	// StatusCode is the HTTP status code
+	// StatusCode is the HTTP status code.
 	StatusCode int
 
-	// Body is the response body
+	// Body is the response body.
 	Body []byte
 
-	// Headers from the response
+	// Headers from the response.
 	Headers http.Header
 }
 
-// Client is a singleton HTTP client for making requests
+// Client is a singleton HTTP client for making requests.
 type Client struct {
 	httpClient *http.Client
 }
@@ -56,7 +55,7 @@ var (
 	once     sync.Once
 )
 
-// GetClient returns the singleton instance of the HTTP client
+// GetClient returns the singleton instance of the HTTP client.
 func GetClient() *Client {
 	once.Do(func() {
 		instance = &Client{
@@ -68,7 +67,7 @@ func GetClient() *Client {
 	return instance
 }
 
-// GET performs an HTTP GET request
+// GET performs an HTTP GET request.
 func (c *Client) GET(ctx context.Context, options RequestOptions) (*HTTPResponse, error) {
 	// Build the URL with query parameters
 	reqURL, err := c.buildURL(options.URL, options.QueryParams)
@@ -97,7 +96,7 @@ func (c *Client) GET(ctx context.Context, options RequestOptions) (*HTTPResponse
 	return c.doRequest(client, req)
 }
 
-// POST performs an HTTP POST request
+// POST performs an HTTP POST request.
 func (c *Client) POST(ctx context.Context, options RequestOptions) (*HTTPResponse, error) {
 	var reqBody io.Reader
 
@@ -142,7 +141,7 @@ func (c *Client) POST(ctx context.Context, options RequestOptions) (*HTTPRespons
 	return c.doRequest(client, req)
 }
 
-// buildURL constructs the full URL with query parameters
+// buildURL constructs the full URL with query parameters.
 func (c *Client) buildURL(baseURL string, params map[string]string) (string, error) {
 	if len(params) == 0 {
 		return baseURL, nil
@@ -162,16 +161,14 @@ func (c *Client) buildURL(baseURL string, params map[string]string) (string, err
 	return parsedURL.String(), nil
 }
 
-// addHeaders adds the specified headers to the request
+// addHeaders adds the specified headers to the request.
 func (c *Client) addHeaders(req *http.Request, headers map[string]string) {
-	if headers != nil {
-		for key, value := range headers {
-			req.Header.Set(key, value)
-		}
+	for key, value := range headers {
+		req.Header.Set(key, value)
 	}
 }
 
-// doRequest executes the HTTP request and processes the response
+// doRequest executes the HTTP request and processes the response.
 func (c *Client) doRequest(client *http.Client, req *http.Request) (*HTTPResponse, error) {
 	resp, err := client.Do(req)
 	if err != nil {

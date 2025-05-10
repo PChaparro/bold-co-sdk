@@ -1,4 +1,3 @@
-// Package sdk provides methods to interact with Bold's payment link API
 package sdk
 
 import (
@@ -10,8 +9,8 @@ import (
 	httpClient "github.com/PChaparro/bold-co-sdk/src/internal/http"
 )
 
-// CreatePaymentLink sends a request to create a payment link using Bold's API
-// It accepts a context and a CreatePaymentLinkRequest with the necessary parameters
+// CreatePaymentLink sends a request to create a payment link using Bold's API.
+// It accepts a context and a CreatePaymentLinkRequest with the necessary parameters.
 // Returns the API response with the payment link details or an error
 func (c *BoldClient) CreatePaymentLink(ctx context.Context, req definitions.CreatePaymentLinkRequest) (*definitions.CreatePaymentLinkResponse, error) {
 	// Construct the endpoint URL

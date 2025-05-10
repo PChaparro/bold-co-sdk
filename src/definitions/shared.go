@@ -3,7 +3,7 @@
 // These types are common and can be reused across various operations with the API.
 package definitions
 
-// DocumentType represents the supported document types for identification
+// DocumentType represents the supported document types for identification.
 type DocumentType string
 
 const (
@@ -19,14 +19,15 @@ const (
 	DocumentTypePpt                  DocumentType = "PPT"
 )
 
-// CurrencyType represents the supported currency types
+// CurrencyType represents the supported currency types.
 type CurrencyType string
 
 const (
-	CurrencyTypeCOP CurrencyType = "COP" // Colombian Peso
+	CurrencyTypeCOP CurrencyType = "COP" // Colombian Peso.
+	CurrencyTypeUSD CurrencyType = "USD" // US Dollar.
 )
 
-// PaymentMethod represents the supported payment methods
+// PaymentMethod represents the supported payment methods.
 type PaymentMethod string
 
 const (
@@ -36,29 +37,30 @@ const (
 	PaymentMethodNequi            PaymentMethod = "NEQUI"
 )
 
-// PayerDocument represents the identification document of the payer
+// PayerDocument represents the identification document of the payer.
 type PayerDocument struct {
 	DocumentType   DocumentType `json:"document_type"`
 	DocumentNumber string       `json:"document_number"`
 }
 
-// Payer represents the person making the payment
+// Payer represents the person making the payment.
 type Payer struct {
 	Email       string        `json:"email,omitempty"`
 	PhoneNumber string        `json:"phone_number,omitempty"`
 	Document    PayerDocument `json:"document"`
 }
 
-// TaxType represents the type of tax applied to the payment
+// TaxType represents the type of tax applied to the payment.
 type TaxType string
 
 const (
-	TaxTypeIVA TaxType = "VAT" // Value Added Tax
+	TaxTypeIVA         TaxType = "VAT"         // Value Added Tax.
+	TaxTypeConsumption TaxType = "CONSUMPTION" // Consumption Tax.
 )
 
-// Tax represents a tax applied to the payment
+// Tax represents a tax applied to the payment.
 type Tax struct {
-	Type  TaxType `json:"type"` // Currently only "VAT" is supported
+	Type  TaxType `json:"type"` // Currently only "VAT" is supported.
 	Base  float64 `json:"base"`
 	Value float64 `json:"value"`
 }
