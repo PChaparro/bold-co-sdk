@@ -1,0 +1,6 @@
+# Editor files
+.vscode/
+
+# Env files
+*.env
+!.env.example
