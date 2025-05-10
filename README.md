@@ -44,11 +44,11 @@ go get github.com/PChaparro/bold-co-sdk
 
 Refer to the integration tests to learn how to use the SDK. The available tests by functionality are:
 
-| Feature             | Integration Test File                                              |
-| ------------------- | ------------------------------------------------------------------ |
-| Get payment methods | [get_payment_methods_test.go](src/sdk/get_payment_methods_test.go) |
-| Create payment link | [create_payment_link_test.go](src/sdk/create_payment_link_test.go) |
-| Get payment link    | [get_payment_link_test.go](src/sdk/get_payment_link_data_test.go)       |
+| Feature             | Integration Test File                                                  |
+| ------------------- | ---------------------------------------------------------------------- |
+| Get payment methods | [get_payment_methods_test.go](src/sdk/get_payment_methods_test.go)     |
+| Create payment link | [create_payment_link_test.go](src/sdk/create_payment_link_test.go)     |
+| Get payment link    | [get_payment_link_data_test.go](src/sdk/get_payment_link_data_test.go) |
 
 Below is an example of generating a payment link:
 
