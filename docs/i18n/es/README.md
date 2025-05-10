@@ -14,7 +14,7 @@ Este repositorio contiene un SDK **no oficial**, escrito en Go, para interactuar
 
 Genera enlaces de pago de forma programática para comercios electrónicos y aplicaciones SaaS, permitiendo procesar cobros en línea de manera segura y eficiente.
 
-- [ ] Consultar métodos de pago disponibles ❌
+- [x] Consultar métodos de pago disponibles ✅
 - [x] Crear enlace de pago ✅
 - [ ] Consultar enlace de pago ❌
 
@@ -38,9 +38,10 @@ go get github.com/PChaparro/bold-co-sdk
 
 Puedes guiarte por los tests de integración para aprender a usar el SDK. A continuación, los tests disponibles por funcionalidad:
 
-| Funcionalidad      | Tests de integración                                                          |
-| ------------------ | ----------------------------------------------------------------------------- |
-| Crear link de pago | [create_payment_link_test.go](.././../../src/sdk/create_payment_link_test.go) |
+| Funcionalidad             | Tests de integración                                                          |
+| ------------------------- | ----------------------------------------------------------------------------- |
+| Consultar métodos de pago | [get_payment_methods_test.go](.././../../src/sdk/get_payment_methods_test.go) |
+| Crear link de pago        | [create_payment_link_test.go](.././../../src/sdk/create_payment_link_test.go) |
 
 A modo de ejemplo, para generar un enlace de pago, puedes usar el siguiente fragmento de código:
 
@@ -113,7 +114,7 @@ Este archivo incluye sólo este ejemplo para evitar redundancias. Para más caso
 
 ## Ejecutar pruebas 🧪
 
-Para ejecutar las pruebas de integración, asegúrate de configurar la variable de entorno `BOLD_API_KEY` con tu clave de Bold: 
+Para ejecutar las pruebas de integración, asegúrate de configurar la variable de entorno `BOLD_API_KEY` con tu clave de Bold:
 
 ```bash
 export BOLD_API_KEY="your_api_key"
@@ -131,8 +132,7 @@ Si deseas ver el coverage de los tests, puedes usar el siguiente comando:
 
 ```bash
 # Generar reporte de cobertura de tests
-go test -coverpkg=./src/sdk/... -coverprofile=./coverage/coverage.out ./src/sdk/... 
+go test -coverpkg=./src/sdk/... -coverprofile=./coverage/coverage.out ./src/sdk/...
 # Abrir reporte de cobertura en HTML
 go tool cover -html=./coverage/coverage.out
 ```
-

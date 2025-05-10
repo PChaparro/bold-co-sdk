@@ -9,12 +9,11 @@ import (
 	httpClient "github.com/PChaparro/bold-co-sdk/src/internal/http"
 )
 
-// CreatePaymentLink sends a request to create a payment link using Bold's API.
-// It accepts a context and a CreatePaymentLinkRequest with the necessary parameters.
-// Returns the API response with the payment link details or an error
-func (c *BoldClient) CreatePaymentLink(ctx context.Context, req definitions.CreatePaymentLinkRequest) (*definitions.CreatePaymentLinkResponse, error) {
+// GetPaymentMethodsForPaymentLink retrieves the available payment methods that can be used
+// for creating a payment link.
+func (c *BoldClient) GetPaymentMethodsForPaymentLink(ctx context.Context) (*definitions.GetPaymentMethodsForPaymentLinkResponse, error) {
 	// Construct the endpoint URL
-	url := fmt.Sprintf("%s/online/link/v1", c.config.BaseURL)
+	url := fmt.Sprintf("%s/online/link/v1/payment_methods", c.config.BaseURL)
 
 	// Prepare headers with authentication
 	headers := map[string]string{
@@ -22,16 +21,15 @@ func (c *BoldClient) CreatePaymentLink(ctx context.Context, req definitions.Crea
 		"Accept":        "application/json",
 	}
 
-	// Make the POST request
-	response, err := c.httpClient.POST(ctx, httpClient.RequestOptions{
+	// Make the GET request
+	response, err := c.httpClient.GET(ctx, httpClient.RequestOptions{
 		URL:     url,
 		Headers: headers,
-		Body:    req,
 	})
 
 	// Handle request errors
 	if err != nil {
-		return nil, fmt.Errorf("failed to create payment link: %w", err)
+		return nil, fmt.Errorf("failed to get available payment methods for payment link: %w", err)
 	}
 
 	// Check for non-successful status code
@@ -40,7 +38,7 @@ func (c *BoldClient) CreatePaymentLink(ctx context.Context, req definitions.Crea
 	}
 
 	// Parse the response
-	var linkResponse definitions.CreatePaymentLinkResponse
+	var linkResponse definitions.GetPaymentMethodsForPaymentLinkResponse
 	if err := json.Unmarshal(response.Body, &linkResponse); err != nil {
 		return nil, fmt.Errorf("failed to parse response: %w", err)
 	}
