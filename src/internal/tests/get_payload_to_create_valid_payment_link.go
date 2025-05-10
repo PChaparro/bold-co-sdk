@@ -30,7 +30,7 @@ func GetPayloadToCreateValidPaymentLink() *definitions.CreatePaymentLinkRequest 
 		PaymentMethods: []definitions.PaymentMethod{
 			definitions.PaymentMethodPse,
 		},
-		Description:    "Mi descripción del producto o servicio",
+		Description:    "Description of product or service",
 		ExpirationDate: expirationDate.UnixNano(),
 		CallbackURL:    "https://example.com/callback",
 		ImageURL:       "https://robohash.org/sad.png",
