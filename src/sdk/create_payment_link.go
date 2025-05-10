@@ -20,7 +20,6 @@ func (c *BoldClient) CreatePaymentLink(ctx context.Context, req definitions.Crea
 	// Prepare headers with authentication
 	headers := map[string]string{
 		"Authorization": fmt.Sprintf("x-api-key %s", c.config.ApiKey),
-		"Content-Type":  "application/json",
 		"Accept":        "application/json",
 	}
 
@@ -45,14 +44,6 @@ func (c *BoldClient) CreatePaymentLink(ctx context.Context, req definitions.Crea
 	var linkResponse definitions.CreatePaymentLinkResponse
 	if err := json.Unmarshal(response.Body, &linkResponse); err != nil {
 		return nil, fmt.Errorf("failed to parse response: %w", err)
-	}
-
-	// Check if the response contains validation errors
-	if linkResponse.HasErrors() {
-		errorMessages := linkResponse.GetErrorMessages()
-		// Return both the response and an error with the validation messages
-		// This allows the caller to access the full response if needed
-		return &linkResponse, fmt.Errorf("validation error(s): %v", errorMessages)
 	}
 
 	return &linkResponse, nil
