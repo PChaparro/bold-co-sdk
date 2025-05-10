@@ -1,4 +1,5 @@
 <!-- filepath: /home/pacq/Documents/Github/Personal/bold-co-sdk/README.md -->
+
 # Bold Colombia (CO) SDK
 
 <div>
@@ -9,13 +10,17 @@
 
 This repository contains an **unofficial** Go SDK for interacting with the [Bold](https://bold.co/) payment gateway API.
 
+## Translations 🌐
+
+[English](README.md) | [Español](docs/i18n/es/README.md)
+
 ## Features ✨
 
 ### Payment Links API 💸
 
 Programmatically generate payment links for e-commerce and SaaS platforms, enabling secure and efficient online transactions.
 
-- [ ] Retrieve available payment methods ❌
+- [x] Retrieve available payment methods ✅
 - [x] Create payment link ✅
 - [ ] Retrieve payment link ❌
 
@@ -25,7 +30,7 @@ Facilitates direct communication between applications and Bold payment terminals
 
 - [ ] Retrieve available payment methods ❌
 - [ ] Retrieve available payment terminals (POS devices) ❌
-- [ ] Create  ❌
+- [ ] Create ❌
 
 ## Installation 📦
 
@@ -39,9 +44,10 @@ go get github.com/PChaparro/bold-co-sdk
 
 Refer to the integration tests to learn how to use the SDK. The available tests by functionality are:
 
-| Feature             | Integration Test File                                                    |
-| ------------------- | ------------------------------------------------------------------------- |
-| Create payment link | [create_payment_link_test.go](src/sdk/create_payment_link_test.go)        |
+| Feature             | Integration Test File                                              |
+| ------------------- | ------------------------------------------------------------------ |
+| Get payment methods | [get_payment_methods_test.go](src/sdk/get_payment_methods_test.go) |
+| Create payment link | [create_payment_link_test.go](src/sdk/create_payment_link_test.go) |
 
 Below is an example of generating a payment link:
 
