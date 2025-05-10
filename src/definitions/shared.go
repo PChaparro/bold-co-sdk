@@ -64,3 +64,6 @@ type Tax struct {
 	Base  float64 `json:"base"`
 	Value float64 `json:"value"`
 }
+
+// ErrorField represents a single error field in the API response.
+type ErrorField map[string]string
