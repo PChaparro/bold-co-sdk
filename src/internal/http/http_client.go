@@ -174,7 +174,11 @@ func (c *Client) doRequest(client *http.Client, req *http.Request) (*HTTPRespons
 	if err != nil {
 		return nil, fmt.Errorf("error executing request: %w", err)
 	}
-	defer resp.Body.Close()
+
+	// Close response body after reading
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	// Read response body
 	body, err := io.ReadAll(resp.Body)

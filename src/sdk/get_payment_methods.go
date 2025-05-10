@@ -34,7 +34,7 @@ func (c *BoldClient) GetPaymentMethodsForPaymentLink(ctx context.Context) (*defi
 
 	// Check for non-successful status code
 	if response.StatusCode < 200 || response.StatusCode >= 300 {
-		return nil, fmt.Errorf("Bold API error - status code: %d, response: %s", response.StatusCode, string(response.Body))
+		return nil, fmt.Errorf("bold API error - status code: %d, response: %s", response.StatusCode, string(response.Body))
 	}
 
 	// Parse the response
