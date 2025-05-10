@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/PChaparro/bold-co-sdk/src/definitions"
+	"github.com/PChaparro/bold-co-sdk/src/internal/tests"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -28,64 +29,43 @@ func TestGetPaymentLinkData(t *testing.T) {
 	defer cancel()
 
 	t.Run("successful payment link data retrieval", func(t *testing.T) {
-		// Create a payment link first to get a valid ID
-		expirationDate := time.Now().Add(24 * time.Hour)
-
-		req := definitions.CreatePaymentLinkRequest{
-			AmountType: definitions.AmountTypeClose,
-			Amount: &definitions.Amount{
-				Currency: definitions.CurrencyTypeCOP,
-				Taxes: []definitions.Tax{
-					{
-						Type:  definitions.TaxTypeIVA,
-						Base:  8403,
-						Value: 1597,
-					},
-				},
-				TipAmount:   0,
-				TotalAmount: 10000,
-			},
-			PaymentMethods: []definitions.PaymentMethod{
-				definitions.PaymentMethodPse,
-			},
-			Description:    "Test payment link for GetPaymentLinkData",
-			PayerEmail:     "test@example.com",
-			ExpirationDate: expirationDate.UnixNano(),
-			CallbackURL:    "https://example.com/callback",
-		}
+		// Create a payment link request using our helper
+		createPaymentLinkRequest := tests.GetPayloadToCreateValidPaymentLink()
 
 		// Create the payment link
-		createResp, err := client.CreatePaymentLink(ctx, req)
-		require.NoError(t, err)
-		require.NotNil(t, createResp)
+		createPaymentLinkResponse, _ := client.CreatePaymentLink(ctx, *createPaymentLinkRequest)
+		require.NotEmpty(t, createPaymentLinkResponse.Payload.PaymentLink)
 
-		// Extract the payment link ID from the URL
-		paymentLinkID := createResp.Payload.PaymentLink
+		// Extract the payment link ID from the response
+		paymentLinkID := createPaymentLinkResponse.Payload.PaymentLink
 
 		// Now get the data for this payment link
-		response, err := client.GetPaymentLinkData(ctx, paymentLinkID)
+		paymentLinkDataResponse, err := client.GetPaymentLinkData(ctx, paymentLinkID)
 
 		// Assert response
 		require.NoError(t, err)
-		require.NotNil(t, response)
+		require.NotNil(t, paymentLinkDataResponse)
 
 		// Check fields
-		assert.Equal(t, paymentLinkID, response.ID)
-		assert.Equal(t, definitions.PaymentLinkStatusActive, response.Status)
-		assert.Equal(t, definitions.AmountTypeClose, response.AmountType)
-		assert.Equal(t, req.Description, *response.Description)
-		assert.Equal(t, req.ExpirationDate, *response.ExpirationDate)
-		assert.NotEmpty(t, response.CreationDate)
-		assert.True(t, response.IsSandbox)
+		assert.Equal(t, paymentLinkID, paymentLinkDataResponse.ID)
+		assert.Equal(t, definitions.PaymentLinkStatusActive, paymentLinkDataResponse.Status)
+		assert.Equal(t, definitions.AmountTypeClose, paymentLinkDataResponse.AmountType)
+		assert.Equal(t, createPaymentLinkRequest.Description, *paymentLinkDataResponse.Description)
+		assert.Equal(t, createPaymentLinkRequest.ExpirationDate, *paymentLinkDataResponse.ExpirationDate)
+		assert.NotEmpty(t, paymentLinkDataResponse.CreationDate)
+		assert.True(t, paymentLinkDataResponse.IsSandbox)
 
-		assert.Equal(t, float64(10000), response.Total)
-		assert.Equal(t, float64(8403), response.Subtotal)
-		assert.Equal(t, float64(0), response.TipAmount)
+		assert.Equal(t, createPaymentLinkRequest.Amount.TotalAmount, paymentLinkDataResponse.Total)
+		assert.Equal(t, createPaymentLinkRequest.Amount.TipAmount, paymentLinkDataResponse.TipAmount)
+		expectedSubtotal := createPaymentLinkRequest.Amount.TotalAmount - createPaymentLinkRequest.Amount.TipAmount - createPaymentLinkRequest.Amount.Taxes[0].Value
+		assert.Equal(t, expectedSubtotal, paymentLinkDataResponse.Subtotal)
 
-		assert.Len(t, response.Taxes, 1)
-		assert.Equal(t, definitions.TaxTypeIVA, response.Taxes[0].Type)
-		assert.Equal(t, float64(8403), response.Taxes[0].Base)
-		assert.Equal(t, float64(1597), response.Taxes[0].Value)
+		assert.Len(t, paymentLinkDataResponse.Taxes, len(createPaymentLinkRequest.Amount.Taxes))
+		for i, tax := range paymentLinkDataResponse.Taxes {
+			assert.Equal(t, createPaymentLinkRequest.Amount.Taxes[i].Type, tax.Type)
+			assert.Equal(t, createPaymentLinkRequest.Amount.Taxes[i].Base, tax.Base)
+			assert.Equal(t, createPaymentLinkRequest.Amount.Taxes[i].Value, tax.Value)
+		}
 	})
 
 	t.Run("non-existent payment link id", func(t *testing.T) {
