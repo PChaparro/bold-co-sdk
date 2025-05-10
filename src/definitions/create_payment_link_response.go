@@ -19,7 +19,7 @@ type CreatePaymentLinkResponse struct {
 		// PaymentLink is the identifier of the created payment link.
 		PaymentLink string `json:"payment_link"`
 
-		// URL is the payment link that can be shared with .
+		// URL is the payment link that can be shared with customers.
 		URL string `json:"url"`
 	} `json:"payload"`
 
