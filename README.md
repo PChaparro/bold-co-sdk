@@ -1,12 +1,8 @@
-<!-- filepath: /home/pacq/Documents/Github/Personal/bold-co-sdk/README.md -->
-
 # Bold Colombia (CO) SDK
 
-<div>
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License badge" />
-  <img src="https://goreportcard.com/badge/github.com/PChaparro/bold-co-sdk.svg" alt="Go report badge" />
-  <img src="https://pkg.go.dev/badge/github.com/PChaparro/bold-co-sdk.svg" alt="Go reference badge" />
-</div>
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![Go Report Card](https://goreportcard.com/badge/github.com/PChaparro/bold-co-sdk)](https://goreportcard.com/report/github.com/PChaparro/bold-co-sdk)
+[![Go Reference](https://pkg.go.dev/badge/github.com/PChaparro/bold-co-sdk.svg)](https://pkg.go.dev/github.com/PChaparro/bold-co-sdk)
 
 This repository contains an **unofficial** Go SDK for interacting with the [Bold](https://bold.co/) payment gateway API.
 
@@ -51,6 +47,9 @@ Refer to the integration tests to learn how to use the SDK. The available tests 
 | Get payment link    | [get_payment_link_data_test.go](src/sdk/get_payment_link_data_test.go) |
 
 Below is an example of generating a payment link:
+
+<details>
+<summary>Click to expand</summary>
 
 ```go
 package main
@@ -98,7 +97,7 @@ func main() {
 		PaymentMethods: []definitions.PaymentMethod{
 			definitions.PaymentMethodPse,
 		},
-		Description:    "My product or service description",
+		Description:    "Description of product or service",
 		PayerEmail:     "johndoe@example.com",
 		ImageURL:       "https://robohash.org/sad.png",
 		ExpirationDate: expiration,
@@ -116,6 +115,8 @@ func main() {
 	fmt.Printf("Payment link created successfully: %+v\n", response)
 }
 ```
+
+</details>
 
 ## Running Tests 🧪
 
