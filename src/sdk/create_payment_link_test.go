@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/PChaparro/bold-co-sdk/src/definitions"
+	"github.com/PChaparro/bold-co-sdk/src/internal/tests"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -28,34 +29,11 @@ func TestCreatePaymentLink(t *testing.T) {
 	defer cancel()
 
 	t.Run("successful payment link creation", func(t *testing.T) {
-		expirationDate := time.Now().Add(24 * time.Hour)
-
-		req := definitions.CreatePaymentLinkRequest{
-			AmountType: definitions.AmountTypeClose,
-			Amount: &definitions.Amount{
-				Currency: definitions.CurrencyTypeCOP,
-				Taxes: []definitions.Tax{
-					{
-						Type:  definitions.TaxTypeIVA,
-						Base:  8403,
-						Value: 1597,
-					},
-				},
-				TipAmount:   0,
-				TotalAmount: 10000,
-			},
-			PaymentMethods: []definitions.PaymentMethod{
-				definitions.PaymentMethodPse,
-			},
-			Description:    "Mi descripción del producto o servicio",
-			PayerEmail:     "johndoe@example.com",
-			ImageURL:       "https://robohash.org/sad.png",
-			ExpirationDate: expirationDate.UnixNano(),
-			CallbackURL:    "https://example.com/callback",
-		}
+		// Create a payment link request using our helper
+		req := tests.GetPayloadToCreateValidPaymentLink()
 
 		// Make the request
-		response, err := client.CreatePaymentLink(ctx, req)
+		response, err := client.CreatePaymentLink(ctx, *req)
 
 		// Assert response
 		require.NoError(t, err)
