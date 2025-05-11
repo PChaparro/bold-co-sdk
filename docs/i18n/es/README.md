@@ -20,9 +20,11 @@ Genera enlaces de pago de forma programática para comercios electrónicos y apl
 
 Permite la comunicación directa entre aplicaciones y terminales de pago (datáfonos) de Bold, automatizando el proceso de cobro sin intervención manual.
 
-- [x] Consultar métodos de pago disponibles ✅
-- [ ] Consultar terminales de pago (datáfonos) disponibles ❌
+- [x] Consultar métodos de pago disponibles ✅ (Beta, **no fue probado por completo**)
+- [x] Consultar terminales de pago (datáfonos) disponibles ✅ (Beta, **no fue probado por completo**)
 - [ ] Crear pagos ❌
+
+Ten en cuenta que **la API de integraciones se encuentra actualmente en fase beta**, lo que significa que puede estar sujeta a cambios. De igual manera, la implementación presente en este repositorio para interactuar con la API de integraciones también está en fase beta, ya que probar estos endpoints requiere una terminal de pago física. **La implementación actual se basa únicamente en los ejemplos provistos por la documentación oficial, y no ha sido posible realizar pruebas completas debido a la falta de acceso a un dispositivo físico.**
 
 ## Instalación 📦
 
@@ -36,12 +38,13 @@ go get github.com/PChaparro/bold-co-sdk
 
 Puedes guiarte por los tests de integración para aprender a usar el SDK. A continuación, los tests disponibles por funcionalidad:
 
-| Funcionalidad                                | Tests de integración                                                                                                    |
-| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Consultar métodos de pago para link de pago  | [get_payment_methods_test.go](.././../../src/sdk/get_payment_methods_test.go)                                           |
-| Crear link de pago                           | [create_payment_link_test.go](.././../../src/sdk/create_payment_link_test.go)                                           |
-| Consultar link de pago                       | [get_payment_link_data_test.go](.././../../src/sdk/get_payment_link_data_test.go)                                       |
-| Consultar métodos de pago para integraciones | [get_payment_methods_for_integrations_api_test.go](.././../../src/sdk/get_payment_methods_for_integrations_api_test.go) |
+| Funcionalidad                                   | Tests de integración                                                                                                       |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Consultar métodos de pago para link de pago     | [get_payment_methods_test.go](.././../../src/sdk/get_payment_methods_test.go)                                              |
+| Crear link de pago                              | [create_payment_link_test.go](.././../../src/sdk/create_payment_link_test.go)                                              |
+| Consultar link de pago                          | [get_payment_link_data_test.go](.././../../src/sdk/get_payment_link_data_test.go)                                          |
+| Consultar métodos de pago para integraciones    | [get_payment_methods_for_integrations_api_test.go](.././../../src/sdk/get_payment_methods_for_integrations_api_test.go)    |
+| Consultar terminales de pago para integraciones | [get_payment_terminals_for_integrations_api_test.go](.././../../src/sdk/get_binded_terminals_for_integrations_api_test.go) |
 
 A modo de ejemplo, para generar un enlace de pago, puedes usar el siguiente fragmento de código:
 
