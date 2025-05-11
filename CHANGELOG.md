@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.4.0](https://github.com/PChaparro/bold-co-sdk/compare/95173ffc2a1ab1775ae3a542d63a7d109b7778ce..v0.4.0) - 2025-05-11
+#### Features
+- get binded terminals for integrations API (#10) - ([95173ff](https://github.com/PChaparro/bold-co-sdk/commit/95173ffc2a1ab1775ae3a542d63a7d109b7778ce)) - Pedro Chaparro
+
+- - -
+
 ## [v0.3.0](https://github.com/PChaparro/bold-co-sdk/compare/19272df89252eac68c5b68732411cd6931c925f7..v0.3.0) - 2025-05-11
 #### Documentation
 - use markdown instead of img tags to show badges in README (#7) - ([ca0018d](https://github.com/PChaparro/bold-co-sdk/commit/ca0018da287aded1570a502a815c850a64054860)) - Pedro Chaparro
