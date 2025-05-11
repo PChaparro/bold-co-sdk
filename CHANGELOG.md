@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.3.0](https://github.com/PChaparro/bold-co-sdk/compare/19272df89252eac68c5b68732411cd6931c925f7..v0.3.0) - 2025-05-11
+#### Documentation
+- use markdown instead of img tags to show badges in README (#7) - ([ca0018d](https://github.com/PChaparro/bold-co-sdk/commit/ca0018da287aded1570a502a815c850a64054860)) - Pedro Chaparro
+- github templates (#5) - ([19272df](https://github.com/PChaparro/bold-co-sdk/commit/19272df89252eac68c5b68732411cd6931c925f7)) - Pedro Chaparro
+#### Features
+- get available payment methods for integrations API (#9) - ([fe77d03](https://github.com/PChaparro/bold-co-sdk/commit/fe77d0322a7af14359e7bf03261efd79ad5d12c2)) - Pedro Chaparro
+
+- - -
+
 ## [v0.2.0](https://github.com/PChaparro/bold-co-sdk/compare/c72c3d84c00308f533f421d751e24c243e77ead6..v0.2.0) - 2025-05-10
 #### Features
 - get data / status of payment link (#3) - ([c72c3d8](https://github.com/PChaparro/bold-co-sdk/commit/c72c3d84c00308f533f421d751e24c243e77ead6)) - Pedro Chaparro
