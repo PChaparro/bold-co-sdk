@@ -68,8 +68,5 @@ type GetPaymentLinkDataResponse struct {
 	PaymentLinkDetails
 
 	// Errors contains any errors that occurred during the request.
-	// Each error is a map of field name to error message.
-	// This field is not included in the example response but added for consistency
-	// with other responses in the SDK.
 	Errors []ErrorField `json:"errors,omitempty"`
 }
