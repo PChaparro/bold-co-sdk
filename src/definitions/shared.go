@@ -35,6 +35,9 @@ const (
 	PaymentMethodPse              PaymentMethod = "PSE"
 	PaymentMethodBotonBancolombia PaymentMethod = "BOTON_BANCOLOMBIA"
 	PaymentMethodNequi            PaymentMethod = "NEQUI"
+	PaymentMethodPos              PaymentMethod = "POS"         // Point of Sale. Only available for integrations API
+	PaymentMethodDaviplata        PaymentMethod = "DAVIPLATA"   // Only available for integrations API
+	PaymentMethodPayByLink        PaymentMethod = "PAY_BY_LINK" // Only available for integrations API
 )
 
 // PayerDocument represents the identification document of the payer.
