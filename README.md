@@ -26,7 +26,7 @@ Facilitates direct communication between applications and Bold payment terminals
 
 - [x] Retrieve available payment methods ✅ (Beta, **not fully tested**)
 - [x] Retrieve available payment terminals (POS devices) ✅ (Beta, **not fully tested**)
-- [ ] Create ❌
+- [x] Create payment ✅ (Beta, **not fully tested**)
 
 Please note that the **integrations API is currently in beta**, which means it may undergo changes. Likewise, the implementation in this repository for interacting with the integrations API is also in beta, as testing these endpoints requires a physical payment terminal. **The current implementation is based solely on the examples provided in the official documentation, and full testing has not been possible due to the lack of access to a physical device.**
 
@@ -49,6 +49,7 @@ Refer to the integration tests to learn how to use the SDK. The available tests 
 | Get payment link                      | [get_payment_link_data_test.go](src/sdk/get_payment_link_data_test.go)                                         |
 | Get payment methods for integration   | [get_payment_methods_for_integrations_api_test.go](src/sdk/get_payment_methods_for_integrations_api_test.go)   |
 | Get payment terminals for integration | [get_binded_terminals_for_integrations_api_test.go](src/sdk/get_binded_terminals_for_integrations_api_test.go) |
+| Create payment for integration        | [create_payment_for_integrations_api_test.go](src/sdk/create_payment_for_integrations_api_test.go)             |
 
 Below is an example of generating a payment link:
 
