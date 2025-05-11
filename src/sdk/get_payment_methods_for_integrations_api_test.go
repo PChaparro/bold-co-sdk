@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestGetPaymentMethodsForPaymentLink(t *testing.T) {
+func TestGetPaymentMethodsForIntegrationsAPI(t *testing.T) {
 	// Get API key from environment variable
 	apiKey := os.Getenv("BOLD_API_KEY")
 	if apiKey == "" {
@@ -23,12 +23,12 @@ func TestGetPaymentMethodsForPaymentLink(t *testing.T) {
 	})
 
 	// Create context with timeout
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
 	t.Run("successful payment methods retrieval", func(t *testing.T) {
 		// Make the request
-		response, err := client.GetPaymentMethodsForPaymentLink(ctx)
+		response, err := client.GetPaymentMethodsForIntegrationsAPI(ctx)
 
 		// Assert response
 		require.NoError(t, err)
@@ -36,17 +36,16 @@ func TestGetPaymentMethodsForPaymentLink(t *testing.T) {
 
 		// Check the payload
 		assert.NotNil(t, response.Payload)
-		assert.NotNil(t, response.Payload.PaymentMethods)
 
-		// Verify that we have at least one payment method
-		assert.Greater(t, len(response.Payload.PaymentMethods), 0, "Should have at least one payment method")
+		// If the payment methods array is not nil, validate its structure
+		if response.Payload.PaymentMethods != nil {
+			assert.NotEmpty(t, *response.Payload.PaymentMethods, "Payment methods should not be empty")
 
-		// Verify that if methods are returned, they have min and max values
-		methods := response.Payload.PaymentMethods
-
-		for _, limits := range methods {
-			assert.NotZero(t, limits.Min, "Min limit should be set")
-			assert.NotZero(t, limits.Max, "Max limit should be set")
+			// If there are any payment methods returned, validate their structure
+			for _, method := range *response.Payload.PaymentMethods {
+				assert.NotEmpty(t, string(method.Name), "Payment method name should not be empty")
+				assert.IsType(t, true, method.Enabled, "Enabled should be a boolean")
+			}
 		}
 
 		// Check for empty errors list

@@ -15,6 +15,5 @@ type CreatePaymentLinkResponse struct {
 	Payload PaymentLinkData `json:"payload"`
 
 	// Errors contains any errors that occurred during the request.
-	// Each error is a map of field name to error message.
 	Errors []ErrorField `json:"errors"`
 }

@@ -10,10 +10,10 @@ const (
 
 // Amount represents the payment amount details
 type Amount struct {
-	Currency    CurrencyType `json:"currency"`             // Currency for the transaction (COP or USD, will be processed in COP).
-	Taxes       []Tax        `json:"taxes,omitempty"`      // Optional: List of taxes applied to the transaction (VAT or CONSUMPTION).
-	TipAmount   float64      `json:"tip_amount,omitempty"` // Optional: Tip amount included in the transaction.
-	TotalAmount float64      `json:"total_amount"`         // Total transaction amount including taxes and tips.
+	Currency    CurrencyType `json:"currency"`        // Currency for the transaction (COP or USD, will be processed in COP).
+	Taxes       []Tax        `json:"taxes,omitempty"` // Optional: List of taxes applied to the transaction (VAT or CONSUMPTION).
+	TipAmount   float64      `json:"tip_amount"`      // Optional: Tip amount included in the transaction.
+	TotalAmount float64      `json:"total_amount"`    // Total transaction amount including taxes and tips.
 }
 
 // CreatePaymentLinkRequest represents a payment request to the Bold API
