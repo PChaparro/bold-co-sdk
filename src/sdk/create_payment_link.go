@@ -16,16 +16,10 @@ func (c *BoldClient) CreatePaymentLink(ctx context.Context, req definitions.Crea
 	// Construct the endpoint URL
 	url := fmt.Sprintf("%s/online/link/v1", c.config.BaseURL)
 
-	// Prepare headers with authentication
-	headers := map[string]string{
-		"Authorization": fmt.Sprintf("x-api-key %s", c.config.ApiKey),
-		"Accept":        "application/json",
-	}
-
 	// Make the POST request
 	response, err := c.httpClient.POST(ctx, httpClient.RequestOptions{
 		URL:     url,
-		Headers: headers,
+		Headers: httpClient.GetDefaultHeadersForBoldAPI(c.config.ApiKey),
 		Body:    req,
 	})
 

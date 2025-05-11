@@ -15,16 +15,10 @@ func (c *BoldClient) GetPaymentMethodsForIntegrationsAPI(ctx context.Context) (*
 	// Construct the endpoint URL
 	url := fmt.Sprintf("%s/payments/payment-methods", c.config.BaseURL)
 
-	// Prepare headers with authentication
-	headers := map[string]string{
-		"Authorization": fmt.Sprintf("x-api-key %s", c.config.ApiKey),
-		"Accept":        "application/json",
-	}
-
 	// Make the GET request
 	response, err := c.httpClient.GET(ctx, httpClient.RequestOptions{
 		URL:     url,
-		Headers: headers,
+		Headers: httpClient.GetDefaultHeadersForBoldAPI(c.config.ApiKey),
 	})
 
 	// Handle request errors
