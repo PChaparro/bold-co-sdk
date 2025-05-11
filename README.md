@@ -42,13 +42,13 @@ go get github.com/PChaparro/bold-co-sdk
 
 Refer to the integration tests to learn how to use the SDK. The available tests by functionality are:
 
-| Feature                               | Integration Test File                                                                                           |
-| ------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Get payment methods for payment link  | [get_payment_methods_for_payment_link_test.go](src/sdk/get_payment_methods_for_payment_link_test.go)            |
-| Create payment link                   | [create_payment_link_test.go](src/sdk/create_payment_link_test.go)                                              |
-| Get payment link                      | [get_payment_link_data_test.go](src/sdk/get_payment_link_data_test.go)                                          |
-| Get payment methods for integration   | [get_payment_methods_for_integrations_api_test.go](src/sdk/get_payment_methods_for_integrations_api_test.go)    |
-| Get payment terminals for integration | [get_payment_terminals_for_integrations_api_test.go](src/sdk/get_binded_terminals_for_integrations_api_test.go) |
+| Feature                               | Integration Test File                                                                                          |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Get payment methods for payment link  | [get_payment_methods_for_payment_link_test.go](src/sdk/get_payment_methods_for_payment_link_test.go)           |
+| Create payment link                   | [create_payment_link_test.go](src/sdk/create_payment_link_test.go)                                             |
+| Get payment link                      | [get_payment_link_data_test.go](src/sdk/get_payment_link_data_test.go)                                         |
+| Get payment methods for integration   | [get_payment_methods_for_integrations_api_test.go](src/sdk/get_payment_methods_for_integrations_api_test.go)   |
+| Get payment terminals for integration | [get_binded_terminals_for_integrations_api_test.go](src/sdk/get_binded_terminals_for_integrations_api_test.go) |
 
 Below is an example of generating a payment link:
 
