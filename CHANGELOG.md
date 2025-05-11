@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.5.0](https://github.com/PChaparro/bold-co-sdk/compare/de1137ceb133ef465ee78e483f5e0195be7b8155..v0.5.0) - 2025-05-11
+#### Features
+- create payment using integrations API (#11) - ([de1137c](https://github.com/PChaparro/bold-co-sdk/commit/de1137ceb133ef465ee78e483f5e0195be7b8155)) - Pedro Chaparro
+
+- - -
+
 ## [v0.4.0](https://github.com/PChaparro/bold-co-sdk/compare/95173ffc2a1ab1775ae3a542d63a7d109b7778ce..v0.4.0) - 2025-05-11
 #### Features
 - get binded terminals for integrations API (#10) - ([95173ff](https://github.com/PChaparro/bold-co-sdk/commit/95173ffc2a1ab1775ae3a542d63a7d109b7778ce)) - Pedro Chaparro
